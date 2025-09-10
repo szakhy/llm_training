@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+src/no_uv_here/__init__.py
+src/no_uv_here/core.py
+src/szt_fancy_pack.egg-info/PKG-INFO
+src/szt_fancy_pack.egg-info/SOURCES.txt
+src/szt_fancy_pack.egg-info/dependency_links.txt
+src/szt_fancy_pack.egg-info/top_level.txt

@@ -1,0 +1,204 @@
+/* Direct CSS styling */
+
+/* General table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+/* Table header */
+thead {
+  background-color: #f0f0f0;
+}
+
+thead th {
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+thead th:last-child {
+  border-right: none;
+}
+
+/* Table body */
+tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody td {
+  padding: 8px 12px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody td:last-child {
+  border-right: none;
+}
+
+/* Make table look exactly like the reference image */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+table {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #000;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 6px 10px;
+  text-align: left;
+}
+
+thead th {
+  background-color: white;
+  border-bottom: 2px solid #000;
+  font-weight: bold;
+}
+
+/* Alternating row colors */
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+nav ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+nav li {
+  margin-bottom: 5px;
+}
+
+.add-new {
+  text-align: right;
+}
+
+.view-link {
+  color: blue;
+  text-decoration: underline;
+}
+
+button {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+/* Navigation */
+nav {
+  background-color: #1d4ed8; /* blue-700 */
+  padding: 1rem;
+  color: white;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+/* Buttons */
+button, .btn {
+  background-color: #1d4ed8; /* blue-700 */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+button:hover, .btn:hover {
+  background-color: #1e40af; /* blue-800 */
+}
+
+.btn-danger {
+  background-color: #dc2626; /* red-600 */
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c; /* red-700 */
+}
+
+/* Links */
+a {
+  color: #2563eb; /* blue-600 */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Utilities */
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-blue-600 {
+  color: #2563eb;
+}
+
+.text-red-600 {
+  color: #dc2626;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}

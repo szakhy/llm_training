@@ -1,0 +1,1 @@
+python -m twine upload --verbose --repository-url https://git.edu.codespring.ro/api/v4/projects/1046/packages/pypi dist/* -u __token__ -p

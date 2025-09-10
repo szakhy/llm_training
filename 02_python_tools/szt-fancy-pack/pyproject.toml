@@ -1,0 +1,10 @@
+[project]
+name = "szt-fancy-pack"
+version = "0.1.0"
+description = "Down in the gutter"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.28.1",
+    "requests>=2.32.4",
+]
