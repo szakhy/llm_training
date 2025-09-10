@@ -1,5 +1,7 @@
+
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import Cart from './components/Cart.vue'
 </script>
 
 <template>

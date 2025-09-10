@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
-import { productApi, type Product } from '../api';
+import { productApi, cartApi, type Product, type CartDTO } from '../api';
+import Cart from '../components/Cart.vue';
 import ConfirmDialog from '../components/ConfirmDialog.vue';
 import ProductDetailsDialog from '../components/ProductDetailsDialog.vue';
 
@@ -12,6 +13,41 @@ const showDeleteConfirm = ref(false);
 const productToDelete = ref<number | null>(null);
 const showProductDetails = ref(false);
 const selectedProduct = ref<Product | null>(null);
+
+const cart = ref<CartDTO | null>(null);
+const cartLoading = ref(false);
+const cartError = ref<string | null>(null);
+
+const fetchCart = async () => {
+  try {
+    cartLoading.value = true;
+    const response = await cartApi.getCart();
+    cart.value = response.data;
+  } catch (err: any) {
+    // Try to create cart if not found
+    if (err.response && err.response.status === 404) {
+      const createResp = await cartApi.createCart();
+      cart.value = createResp.data;
+    } else {
+      cartError.value = `Failed to load cart: ${err.message}`;
+    }
+  } finally {
+    cartLoading.value = false;
+  }
+};
+
+const addToCart = async (product: Product) => {
+  try {
+    cartLoading.value = true;
+    const response = await cartApi.addItem({ product_id: product.id, quantity: 1 });
+    cart.value = response.data;
+  } catch (err: any) {
+    cartError.value = 'Failed to add to cart';
+    console.error(err);
+  } finally {
+    cartLoading.value = false;
+  }
+};
 
 const fetchProducts = async () => {
   try {
@@ -28,6 +64,7 @@ const fetchProducts = async () => {
 
 onMounted(() => {
   fetchProducts();
+  fetchCart();
 });
 
 const confirmDelete = (id: number) => {
@@ -152,12 +189,26 @@ const truncateText = (text, maxLength = 100) => {
               </router-link>
 
               <button
+                @click="addToCart(product)"
+                :disabled="cartLoading || product.stock === 0 || (cart && cart.items.some(i => i.product.id === product.id && i.quantity >= product.stock))"
+                class="inline-flex items-center justify-center w-[31.5px] h-7 bg-[#22c55e] rounded-[6.75px] hover:bg-[#16a34a] transition-colors disabled:opacity-50"
+                title="Add to cart"
+              >
+                <span class="sr-only">Add to cart</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-[14px] h-[14px] text-white">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </button>
+
+              <button
                 @click="confirmDelete(product.id)"
                 class="inline-flex items-center justify-center w-[31.5px] h-7 bg-[#D4183D] rounded-[6.75px] hover:bg-[#BD1636] transition-colors"
               >
                 <img src="../assets/icons/delete-icon.svg" alt="Delete" class="w-[14px] h-[14px]" />
               </button>
             </div>
+  <!-- Shopping Cart (bottom left) -->
+  <Cart v-if="cart" :cart="cart" @cart-updated="cart = $event" />
           </div>
         </div>
       </div>
