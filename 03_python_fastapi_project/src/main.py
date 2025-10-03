@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import products
+from routes import cart
 from database import engine, Base
 
 app = FastAPI()
@@ -17,7 +18,11 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup():
+    """
+    On startup, create all tables including Cart and CartItem if not present.
+    """
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
 app.include_router(products.router)
+app.include_router(cart.router)
